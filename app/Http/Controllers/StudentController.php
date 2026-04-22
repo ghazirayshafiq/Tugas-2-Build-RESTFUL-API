@@ -8,14 +8,12 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
-    // 1. GET List all student
     public function index()
     {
         $students = Student::all();
         return response()->json(['message' => 'Success', 'data' => $students], 200);
     }
 
-    // 2. GET Get student by ID
     public function show($id)
     {
         $student = Student::find($id);
@@ -25,7 +23,6 @@ class StudentController extends Controller
         return response()->json(['message' => 'Not found'], 404);
     }
 
-    // 3. POST Create a student
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -42,7 +39,6 @@ class StudentController extends Controller
         return response()->json(['message' => 'Success', 'data' => $student], 201);
     }
 
-    // 4. PUT Edit a student
     public function update(Request $request, $id)
     {
         $student = Student::find($id);
@@ -54,7 +50,6 @@ class StudentController extends Controller
         return response()->json(['message' => 'Success', 'data' => $student], 200);
     }
 
-    // 5. DEL Delete a student
     public function destroy($id)
     {
         $student = Student::find($id);
@@ -65,5 +60,5 @@ class StudentController extends Controller
         $student->delete();
         return response()->json(['message' => 'Success'], 200);
     }
-    
+
 }
